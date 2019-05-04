@@ -1,0 +1,19 @@
+body {
+	background-color: #000;
+	color: #f2f;
+}
+
+img {
+	width: calc(100% - 80px);
+}
+
+/* comment that is too long the max length */
+a {
+	font-family: "Arial", sans-serif;
+	transform: translate(.5, 1) scale(3);
+	&:hover {
+		color: #fff;
+	}
+}
+
+b { font-family: "Arial", sans-serif; } 
