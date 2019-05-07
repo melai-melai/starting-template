@@ -34,6 +34,9 @@ var paths = {
   },
   html: {
   	src: 'public_html/**/*.html'
+  },
+  maps: {
+    dest: 'public_html/maps'
   }
 };
 
@@ -77,7 +80,7 @@ function styles() {
       basename: 'styles',
       suffix: '.min'
     }))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write(paths.maps.dest))
     .pipe(gulp.dest(paths.styles.dest))
     .pipe(browsersync.stream());
 }
@@ -102,7 +105,7 @@ function scripts() {
 	.pipe(babel())
 	.pipe(uglify())
 	.pipe(concat('scripts.min.js'))
-	.pipe(sourcemaps.write())
+	.pipe(sourcemaps.write(paths.styles.dest))
 	.pipe(gulp.dest(paths.scripts.dest));
 }
 
