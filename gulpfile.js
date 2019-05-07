@@ -1,4 +1,6 @@
-/* Load plugins */
+/*
+ * Load plugins 
+ */
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
@@ -18,7 +20,9 @@ var browsersync = require('browser-sync').create();
 
 sass.compiler = require('node-sass');
 
-/* Paths */
+/* 
+ * Paths 
+ */
 var paths = {
   styles: {
   	src: 'resources/scss/**/*.scss',
@@ -40,18 +44,24 @@ var paths = {
   }
 };
 
-/* Task: Clear public_html except html files */
+/* 
+ * Task: Clear public_html except html files 
+ */
 function clean() {
   return del([ 'public_html/**/*' , '!public_html/**/*.html' ]);
 }
 
-/* Task: BrowserSync reload */
+/* 
+ * Task: BrowserSync reload 
+ */
 function browserSyncReload(done) {
   browsersync.reload();
   done();
 }
 
-/* Task: BrowserSync init */
+/* 
+ * Task: BrowserSync init 
+ */
 function browserSync(done) {
   browsersync.init({
   	server: {
@@ -65,7 +75,9 @@ function browserSync(done) {
   done();
 }
 
-/* Task: Optimize css */
+/* 
+ * Task: Optimize css 
+ */
 function styles() {
   return gulp.src(paths.styles.src)
     .pipe(sourcemaps.init())
@@ -85,7 +97,9 @@ function styles() {
     .pipe(browsersync.stream());
 }
 
-/* Task: Lint styles */
+/* 
+ * Task: Lint styles 
+ */
 function stylesLint() {
   return gulp.src(paths.styles.src)
     .pipe(plumber())
@@ -97,7 +111,9 @@ function stylesLint() {
   	}));
 }
 
-/* Task: Optimize js */
+/* 
+ * Task: Optimize js 
+ */
 function scripts() {
   return gulp.src(paths.scripts.src, { sourcemaps: true })
 	.pipe(sourcemaps.init())
@@ -109,7 +125,9 @@ function scripts() {
 	.pipe(gulp.dest(paths.scripts.dest));
 }
 
-/* Task: Lint scripts */
+/* 
+ * Task: Lint scripts 
+ */
 function scriptsLint() {
   return gulp.src(paths.scripts.src)
     .pipe(plumber())
@@ -118,7 +136,9 @@ function scriptsLint() {
     .pipe(eslint.failAfterError());
 }
 
-/* Task: Optimize images */
+/* 
+ * Task: Optimize images 
+ */
 function images() {
   return gulp.src(paths.images.src)
     .pipe(newer(paths.images.dest))
@@ -140,7 +160,9 @@ function images() {
     .pipe(gulp.dest(paths.images.dest));
 }
 
-/* Task: Watch files */
+/* 
+ * Task: Watch files 
+ */
 function watchFiles() {
 	gulp.watch(paths.styles.src, gulp.series(stylesLint, styles));
 	gulp.watch(paths.scripts.src, gulp.series(scriptsLint, scripts, browserSyncReload));
@@ -148,13 +170,17 @@ function watchFiles() {
 	gulp.watch(paths.html.src).on('change', browsersync.reload);
 }
 
-/* Define complex tasks */
+/* 
+ * Define complex tasks 
+ */
 var css = gulp.series(stylesLint, styles);
 var js = gulp.series(scriptsLint, scripts);
 var watch = gulp.parallel(watchFiles, browserSync);
 var build = gulp.series(clean, gulp.parallel(styles, scripts, images));
 
-/* Export tasks */
+/* 
+ * Export tasks 
+ */
 exports.clean = clean;
 exports.css = css;
 exports.js = js;
