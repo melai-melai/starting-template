@@ -10,6 +10,7 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var cleanCSS = require('gulp-clean-css');
 var imagemin = require('gulp-imagemin');
+const image = require('gulp-image');
 var newer = require('gulp-newer');
 var plumber = require('gulp-plumber');
 var stylelint = require('gulp-stylelint');
@@ -142,21 +143,22 @@ function scriptsLint() {
 function images() {
   return gulp.src(paths.images.src)
     .pipe(newer(paths.images.dest))
-    .pipe(
-      imagemin([
-      	imagemin.gifsicle({ interlaced: true }),
-      	imagemin.jpegtran({ progressive: true }),
-      	imagemin.optipng({ optimizationLevel: 5 }),
-      	imagemin.svgo({
-      	  plugins: [
-      		{
-      		  removeViewBox: false,
-      		  collapseGroups: true
-      		}
-      	  ]
-      	})
-      ])
-    )
+    // .pipe(
+    //   imagemin([
+    //   	imagemin.gifsicle({ interlaced: true }),
+    //   	imagemin.jpegtran({ progressive: true }),
+    //   	imagemin.optipng({ optimizationLevel: 5 }),
+    //   	imagemin.svgo({
+    //   	  plugins: [
+    //   		{
+    //   		  removeViewBox: false,
+    //   		  collapseGroups: true
+    //   		}
+    //   	  ]
+    //   	})
+    //   ])
+    // )
+    .pipe(image())
     .pipe(gulp.dest(paths.images.dest));
 }
 
