@@ -133,8 +133,8 @@ function scriptsLint() {
   return gulp.src(paths.scripts.src)
     .pipe(plumber())
     .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+    .pipe(eslint.format());
+    //.pipe(eslint.failAfterError());
 }
 
 /* 
