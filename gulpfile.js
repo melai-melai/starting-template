@@ -40,7 +40,7 @@ var paths = {
   	src: 'public_html/**/*.html'
   },
   maps: {
-    dest: 'public_html/maps'
+    dest: '/maps'
   }
 };
 
@@ -118,10 +118,10 @@ function scripts() {
   return gulp.src(paths.scripts.src, { sourcemaps: true })
 	.pipe(sourcemaps.init())
 	.pipe(plumber())
-	.pipe(babel())
+	.pipe(babel({presets: ['@babel/env']}))
 	.pipe(uglify())
 	.pipe(concat('scripts.min.js'))
-	.pipe(sourcemaps.write(paths.styles.dest))
+	.pipe(sourcemaps.write(paths.maps.dest))
 	.pipe(gulp.dest(paths.scripts.dest));
 }
 
