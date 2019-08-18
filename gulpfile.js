@@ -1,30 +1,30 @@
 /*
  * Load plugins 
  */
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var babel = require('gulp-babel');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var cleanCSS = require('gulp-clean-css');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const babel = require('gulp-babel');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const rename = require('gulp-rename');
+const cleanCSS = require('gulp-clean-css');
 //const imagemin = require('gulp-imagemin');
 const image = require('gulp-image');
-var newer = require('gulp-newer');
-var plumber = require('gulp-plumber');
-var stylelint = require('gulp-stylelint');
-var eslint = require('gulp-eslint');
-var del = require('del');
-var sourcemaps = require('gulp-sourcemaps');
-var browsersync = require('browser-sync').create();
+const newer = require('gulp-newer');
+const plumber = require('gulp-plumber');
+const stylelint = require('gulp-stylelint');
+const eslint = require('gulp-eslint');
+const del = require('del');
+const sourcemaps = require('gulp-sourcemaps');
+const browsersync = require('browser-sync').create();
 
 sass.compiler = require('node-sass');
 
 /* 
  * Paths 
  */
-var paths = {
+const paths = {
   styles: {
   	src: 'resources/scss/**/*.scss',
   	dest: 'public_html/css/'
@@ -175,10 +175,10 @@ function watchFiles() {
 /* 
  * Define complex tasks 
  */
-var css = gulp.series(stylesLint, styles);
-var js = gulp.series(scriptsLint, scripts);
-var watch = gulp.parallel(watchFiles, browserSync);
-var build = gulp.series(clean, gulp.parallel(styles, scripts, images));
+const css = gulp.series(stylesLint, styles);
+const js = gulp.series(scriptsLint, scripts);
+const watch = gulp.parallel(watchFiles, browserSync);
+const build = gulp.series(clean, gulp.parallel(styles, scripts, images));
 
 /* 
  * Export tasks 
