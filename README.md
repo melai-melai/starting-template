@@ -2,8 +2,9 @@
 The project helps you to work with css(sass), js, minified files and optomization of images. It contains stylelint.
 
 ## Setting
-Babel settings are in babel.config.js
-Stylelint settings are in .stylelintrc
+- Babel settings are in babel.config.js
+- StyleLint settings are in .stylelintrc
+- ESLint settings are in .eslintrc.js
 
 ## Getting Started
 1. Download the project.
