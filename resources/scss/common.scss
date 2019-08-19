@@ -2,6 +2,10 @@
 
 //@import "_fonts.scss";    // add fonts
 
+* {
+	box-sizing: border-box;
+}
+
 body {
 	background-color: #f2f2f2;
 	font-family: "Arial", sans-serif;
