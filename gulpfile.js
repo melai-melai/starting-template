@@ -85,7 +85,6 @@ function styles() {
     .pipe(plumber())
     .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError)) // scss to css
     .pipe(autoprefixer({
-    	browsers: ['last 2 versions'],
     	cascade: false
     }))
     .pipe(cleanCSS({compatibility: 'ie8'}))
