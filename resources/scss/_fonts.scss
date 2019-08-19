@@ -1,0 +1,16 @@
+/* stylelint-disable */
+@mixin add-font($font-family, $font-family-full, $url, $weight, $style) {
+	@font-face {
+		font-family: '#{$font-family}';
+		src: url('#{$url}.eot');
+		src: url('#{$url}.eot?#iefix') format('embedded-opentype'),
+				 url('#{$url}.woff2') format('woff2'),
+				 url('#{$url}.woff') format('woff'),
+				 url('#{$url}.ttf') format('truetype'),
+				 url('#{$url}.svg#{$font-family-full}') format('svg');
+		font-weight: $weight;
+		font-style: $style;
+	}
+}
+//@include add-font('Example-Font', 'Example-Font-Regular', '../fonts/Example-Font/Example-Font-Regular', 400, normal); //example
+/* stylelint-enable */
